@@ -23,6 +23,7 @@ select {
   padding: 8px;
   font-size: 14px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .city {
