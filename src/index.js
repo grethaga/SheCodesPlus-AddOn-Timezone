@@ -1,27 +1,36 @@
-function showSelectedCity(event) {
-  let date;
+function updateTime() {
+  let ViennaElement = document.querySelector("#vienna");
+  if (ViennaElement) {
+    let ViennaDateElement = document.querySelector(".date");
+    let ViennaTimeElement = document.querySelector(".time");
 
-  if (event.target.value.length > 0) {
-    if (event.target.value === "paris") {
-      date =
-        moment().tz("Europe/Paris").format("dddd, MMMM Do, YYYY h:m A") +
-        " in Europe/Paris";
-    }
-    if (event.target.value === "tokyo") {
-      date =
-        moment().tz("Asia/Tokyo").format("dddd, MMMM Do, YYYY h:m A") +
-        " in Asia/Tokyo";
-    }
-    if (event.target.value === "sydney") {
-      date =
-        moment().tz("Australia/Sydney").format("dddd, MMMM Do, YYYY h:m A") +
-        " in Australia/Sydney";
-    }
+    ViennaDateElement.innerHTML = moment()
+      .tz("Europe / Vienna")
+      .format("MMMM Do, YYYY");
+    ViennaTimeElement.innerHTML = moment()
+      .tz("Europe / Vienna")
+      .format("h:mm:ss [<small>] A [</small>]");
   }
-
-  alert(`It is ${date}`);
 }
 
-let citySelect = document.querySelector("#cities");
+function updateCity(event) {
+  let cityTimezone = event.target.value;
+  let cityName = cityTimezone.split("/")[1];
+  let cityTime = moment().tz(cityTimezone);
+  let cityElement = document.querySelector(".neu");
+  cityElement.innerHTML = `
+  <div class="city" id="vienna"><div>
+          <h2>${cityName}</h2>
+          <p class="date">${cityTime.format("MMMM Do, YYYY")}</p>
+        </div>
+        <div class="time">${cityTime.format(
+          "h:mm:ss"
+        )} <small>${cityTime.format("A")}</small></div>
+        </div>`;
+}
 
-citySelect.addEventListener("change", showSelectedCity);
+updateTime();
+setInterval(updateTime, 1000);
+
+let citySelect = document.querySelector("#cities");
+citySelect.addEventListener("change", updateCity);
