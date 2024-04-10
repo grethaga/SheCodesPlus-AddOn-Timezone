@@ -11,13 +11,29 @@ function updateTime() {
       .tz("Europe / Vienna")
       .format("h:mm:ss [<small>] A [</small>]");
   }
+  let TokyoElement = document.querySelector("#tokyo");
+  if (TokyoElement) {
+    let TokyoDateElement = document.querySelector(".date");
+    let TokyoTimeElement = document.querySelector(".time");
+
+    TokyoDateElement.innerHTML = moment()
+      .tz("Asia / Tokyo")
+      .format("MMMM Do, YYYY");
+    TokyoTimeElement.innerHTML = moment()
+      .tz("Asia / Tokyo")
+      .format("h:mm:ss [<small>] A [</small>]");
+  }
 }
 
 function updateCity(event) {
   let cityTimezone = event.target.value;
+  if (cityTimezone === "current") {
+    cityTimezone = moment.tz.guess();
+  }
+
   let cityName = cityTimezone.split("/")[1];
   let cityTime = moment().tz(cityTimezone);
-  let cityElement = document.querySelector(".neu");
+  let cityElement = document.querySelector(".multipleCities");
   cityElement.innerHTML = `
   <div class="city"><div>
           <h2>${cityName}</h2>
