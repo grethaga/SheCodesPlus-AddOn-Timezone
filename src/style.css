@@ -35,7 +35,7 @@ select {
 }
 
 .city.last-child {
-  border: none;
+  border-bottom: none;
 }
 
 .time {

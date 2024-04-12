@@ -3,25 +3,23 @@ function updateTime() {
   if (ViennaElement) {
     let ViennaDateElement = document.querySelector(".date");
     let ViennaTimeElement = document.querySelector(".time");
+    let viennaTime = moment().tz("Europe/Vienna");
 
-    ViennaDateElement.innerHTML = moment()
-      .tz("Europe / Vienna")
-      .format("MMMM Do, YYYY");
-    ViennaTimeElement.innerHTML = moment()
-      .tz("Europe / Vienna")
-      .format("h:mm:ss [<small>] A [</small>]");
+    ViennaDateElement.innerHTML = viennaTime.format("MMMM Do, YYYY");
+    ViennaTimeElement.innerHTML = viennaTime.format(
+      "h:mm:ss [<small>] A [</small>]"
+    );
   }
   let TokyoElement = document.querySelector("#tokyo");
   if (TokyoElement) {
-    let TokyoDateElement = document.querySelector(".date");
-    let TokyoTimeElement = document.querySelector(".time");
+    let TokyoDateElement = document.querySelector("#tokyo-date");
+    let TokyoTimeElement = document.querySelector("#tokyo-time");
+    let tokyoTime = moment().tz("Asia/Tokyo");
 
-    TokyoDateElement.innerHTML = moment()
-      .tz("Asia / Tokyo")
-      .format("MMMM Do, YYYY");
-    TokyoTimeElement.innerHTML = moment()
-      .tz("Asia / Tokyo")
-      .format("h:mm:ss [<small>] A [</small>]");
+    TokyoDateElement.innerHTML = tokyoTime.format("MMMM Do, YYYY");
+    TokyoTimeElement.innerHTML = tokyoTime.format(
+      "h:mm:ss [<small>] A [</small>]"
+    );
   }
 }
 
