@@ -21,6 +21,17 @@ function updateTime() {
       "h:mm:ss [<small>] A [</small>]"
     );
   }
+  let HelsinkiElement = document.querySelector("#helsinki");
+  if (HelsinkiElement) {
+    let HelsinkiDateElement = document.querySelector("#helsinki-date");
+    let HelsinkiTimeElement = document.querySelector("#helsinki-time");
+    let helsinkiTime = moment().tz("Europe/Helsinki");
+
+    HelsinkiDateElement.innerHTML = helsinkiTime.format("MMMM Do, YYYY");
+    HelsinkiTimeElement.innerHTML = helsinkiTime.format(
+      "h:mm:ss [<small>] A [</small>]"
+    );
+  }
 }
 
 function updateCity(event) {
